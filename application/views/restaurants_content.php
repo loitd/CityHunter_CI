@@ -48,9 +48,9 @@
 					  	<td><?php echo $data[$key]['id']; ?></td>
 					  	<td><?php echo $data[$key]['Name']; ?></td>
 						<td><?php echo $data[$key]['Cousine_Type']; ?></td>
-						<td>-</td>
+						<td><?php echo $data[$key]['Email']; ?></td>
 						<td style="text-align:right;"><?php echo $data[$key]['Check_ins']; ?></td>
-						<td class="center">-</td>
+						<td class="center"><?php echo $data[$key]['Reg_Date']; ?></td>
 						<td class="center">
 							<span class="label label-success"><?php echo $data[$key]['Status']; ?></span>
 						</td>

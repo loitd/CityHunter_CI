@@ -14,7 +14,7 @@ class restaurants_model extends CI_Model
     }
 
     public function getRestaurants(){
-    	$query = 'SELECT "id", "Name", "Cousine_Type", "Check_ins", \'active\' AS "Status"
+    	$query = 'SELECT "id", "Name", "Cousine_Type", "Check_ins", \'active\' AS "Status", "Email", "Reg_Date"
 				FROM srv_restaurant_information
 				ORDER BY "id" ASC';
 
@@ -36,13 +36,23 @@ class restaurants_model extends CI_Model
             
             $account = '';
 
-            $newsfeed = '';
+            $newsfeed = 'select a."id", now() - a."Date_time" as "QQ", a."User_action" ,b."First_name" from srv_user_activity a
+                            left join srv_user b
+                            on a."user_id"::Integer = b."id"
+                            where a."Restaurant_Id"::Integer = '. $id .'';
+            $newsfeed = $this->db->query($newsfeed);
+            $newsfeed = $newsfeed->result_array();
+
 
             $notes = '';
             
-            $deals = 'select * from srv_deals_detail where "Restaurant_id"::Integer = ' . $id . ' order by id asc';
+            $deals = 'select * from srv_deals_detail where "Restaurant_id"::Integer = ' . $id . ' and "Status" = \'active\' order by id asc';
             $deals = $this->db->query($deals);
             $deals = $deals->result_array();
+
+            $dealhis = 'select * from srv_deals_detail where "Restaurant_id"::Integer = ' . $id . ' and "Status" = \'archived\' order by "Start_Date" desc';
+            $dealhis = $this->db->query($dealhis);
+            $dealhis = $dealhis->result_array();
             
             $sales = 'select loi2.*, srv_restaurant_information."Name" as "Restaurant_Name"
                         ,srv_restaurant_information."Redeem_Code"
@@ -62,11 +72,27 @@ class restaurants_model extends CI_Model
             
             $ownerphotos = '';
             $memberphotos = '';
-            $comments = '';
+            
+            $comments = 'select aa.*, bb."Name" as "ResName" from 
+                        (select a."id", a."Comment", now() - a."DateTime" as "QQ", b."Restaurant_Id" 
+                        from srv_comment a left join srv_user_activity b
+                        on a."Activity_id"::Integer = b."id") aa
+                        left join srv_restaurant_information bb
+                        on aa."Restaurant_Id"::Integer = bb."id"
+                        where aa."Restaurant_Id"::Integer = '. $id .'';
+            $comments = $this->db->query($comments);
+            $comments = $comments->result_array();
             
             $signatures = 'select * from srv_restaurant_menus where "Restaurant_Id"::Integer = ' . $id;
             $signatures = $this->db->query($signatures);
             $signatures = $signatures->result_array();
+
+            $totalsales = 'select sum(b."Dollar_Price") as "QQ" from srv_deals_purchased a
+                        left join srv_deals_detail b
+                        on a."Deals_Detail_ID"::Integer = b."id"
+                        where b."Restaurant_id"::Integer = '. $id .'';
+            $totalsales = $this->db->query($totalsales);
+            $totalsales = $totalsales->result_array();
 
             $this->db->trans_complete(); //end transaction
 
@@ -81,11 +107,13 @@ class restaurants_model extends CI_Model
                     'newsfeed'  => $newsfeed,
                     'notes'     => $notes,
                     'deals'     => $deals, //include deals history
+                    'dealhis'   => $dealhis, //include deals history
                     'sales'     => $sales, 
                     'ownerphotos'       => $ownerphotos, 
                     'memberphotos'      => $memberphotos, 
                     'comments'          => $comments, 
                     'signatures'        => $signatures, 
+                    'totalsales'        => $totalsales, 
 
                 );    
             }

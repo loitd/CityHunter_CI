@@ -145,7 +145,7 @@
 			  </div>
 		  </div>
           
-          
+          <?php //var_dump($data['owner']); ?>
            <div class="box fluid">
 				<div class="box-header well" data-original-title>
 					<h2>Owner Information</h2>
@@ -160,22 +160,23 @@
 						  <tbody>
 							<tr>
 								<td><strong>First Name</strong></td>
-								<td class="center">-</td>
+								<td class="center"><?php echo $data['basic']['O_Firstname']; ?></td>
 								<td class="center">&nbsp;</td>
 							</tr>
 							<tr>
 								<td><strong>Last Name</strong></td>
-								<td class="center">-</td>
+								<td class="center"><?php echo $data['basic']['O_Lastname']; ?></td>
 								<td class="center">&nbsp;</td>
 							</tr>
 							<tr>
 								<td><strong>Email</strong></td>
-								<td class="center"><span class="blue" style="font-size:15px; font-weight:bold;">-</span></td>
+								<td class="center"><span class="blue" style="font-size:15px; font-weight:bold;">
+								<?php echo $data['basic']['O_Email']; ?></span></td>
 								<td class="center">&nbsp;</td>
 							</tr>
 							<tr>
 							  <td><strong>Phone</strong></td>
-							  <td class="center">-</td>
+							  <td class="center"><?php echo $data['basic']['O_Phone']; ?></td>
 							  <td class="center">&nbsp;</td>
 						    </tr>                                   
 						  </tbody>
@@ -193,32 +194,33 @@
                  <tbody>
                    <tr>
                      <td><strong>Unique ID</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_Uid']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>First Name</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_Firstname']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>Last Name</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_Lastname']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>Position</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_Position']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>Email</strong></td>
-                     <td class="center"><span class="blue" style="font-size:15px; font-weight:bold;">-</span></td>
+                     <td class="center"><span class="blue" style="font-size:15px; font-weight:bold;">
+                     <?php echo $data['basic']['C_Email']; ?></span></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>Phone</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_Phone']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
@@ -228,33 +230,33 @@
                    </tr>
                    <tr>
                      <td><strong>Address 1</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_Addr1']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>Address 2</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_Addr2']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>City</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_City']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>State/Province</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_State']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>Country</strong></td>
-                     <td class="center">-</td>
+                     <td class="center"><?php echo $data['basic']['C_Country']; ?></td>
                      <td class="center">&nbsp;</td>
                    </tr>
                    <tr>
                      <td><strong>Zip/Postal Code</strong></td>
-                     <td class="center">-</td>
-                     <td class="center"><a class="btn btn-mini" href="https://maps.google.ca/maps?q=h3k+1g6" target="_blank"><i class="icon-globe icon-black"></i> Maps</a></td>
+                     <td class="center"><?php echo $data['basic']['C_Zip']; ?></td>
+                     <td class="center"><a class="btn btn-mini" href="https://maps.google.ca/maps?q=<?php echo $data['basic']['C_Zip']; ?>" target="_blank"><i class="icon-globe icon-black"></i> Maps</a></td>
                    </tr>
                  </tbody>
                </table>
@@ -281,7 +283,9 @@
 		            </tr>
 			        <tr>
 			          <td><strong>Total Sales</strong></td>
-			          <td class="center"><span class="green" style="font-size:15px; font-weight:bold;">-</span></td>
+			          <td class="center"><span class="green" style="font-size:15px; font-weight:bold;">
+			          <?php echo "$" . $data['totalsales'][0]['QQ']; ?>
+			          </span></td>
 			          <td class="center">&nbsp;</td>
 		            </tr>
 			        <tr>
@@ -314,7 +318,7 @@
 			    <div class="box-icon"> <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a> <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> </div>
 		      </div>
 			  <div class="box-content">
-			    <table class="table table-striped table-condensed">
+			    <table class="table table-striped table-condensed bootstrap-datatable datatable">
                 <thead>
 						  <tr>
 						    <th>Time</th>
@@ -323,25 +327,35 @@
 				  </thead>   
 			      <tbody>
 			        
+			      <?php foreach($data['newsfeed'] as $key=>$value):?>
 			        <tr>
-			          <td class="center">10m</td>
-			          <td><span class="label label-default">-</span> likes this reastaurant</td>
+			          <td class="center">
+			         <?php 
+						$x = explode(".", $data['newsfeed'][$key]['QQ']); 
+						if(strpos($x[0], "days") !== false){
+							// include days in string
+							$y = explode("days", $x[0]);
+							echo $y[0] . " days"; 
+						} else {
+							echo $x[0];
+						}
+						
+					?></td>
+			          <td><span class="label label-default"><?php echo $data['newsfeed'][$key]['First_name'];?></span> <?php echo $data['newsfeed'][$key]['User_action'];?></td>
 		            </tr>
+		          <?php endforeach; ?>
 			        
+
 		          </tbody>
 		        </table>
-                <div class="pagination pagination-centered">
-					  <ul>
-						<li><a href="#">Prev</a></li>
-						<li class="active">
-						  <a href="#">1</a>
-						</li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">Next</a></li>
-				  </ul>
-				</div>
+                
+		        <style type="text/css">
+		        	#DataTables_Table_2_wrapper > div.row-fluid > div.span6 {
+						display: none;
+					}
+		        </style>
+
+
 		      </div>
 		  </div>
 			<div class="box fluid">
@@ -357,11 +371,10 @@
 		        </ul>
 			    <div id="myTabContent" class="tab-content">
 			      <div class="tab-pane active" id="notes">
-			        <p>-</p>
+			        <p><?php echo $data['basic']['Note'];?></p>
 		          </div>
 			      <div class="tab-pane" id="info">
-			        <h3>Lorem Ipsum <small>Dolor Sit amet</small></h3><br>
-			        <p>-</p>
+			        <p><?php echo $data['basic']['Info'];?></p>
 		          </div>
 		        </div>
 		      </div>
@@ -471,14 +484,14 @@
           </tr>
         </thead>
         <tbody>
-        	<?php foreach($data['deals'] as $key=>$val): ?>
+        	<?php foreach($data['dealhis'] as $key=>$val): ?>
 	          	<tr>
-		            <td class="center"><?php echo $data['deals'][$key]['Start_Date'];?></td>
-		            <td class="center"><?php echo $data['deals'][$key]['End_Date'];?></td>
-		            <td class="center"><?php echo $data['deals'][$key]['Description'];?></td>
-		            <td style="text-align:right;"><span class="green">$<?php echo $data['deals'][$key]['Dollar_Price'];?></span></td>
-		            <td style="text-align:right;"><span class="yellow"><?php echo $data['deals'][$key]['Coin_Price'];?></span></td>
-		            <td><a class="btn btn-info btn-mini" href="<?php echo $this->config->site_url(); ?>/deals/viewdeal?id=<?php echo $data['deals'][$key]['id'];?>"><i class="icon-tag icon-white"></i> View</a></td>
+		            <td class="center"><?php echo $data['dealhis'][$key]['Start_Date'];?></td>
+		            <td class="center"><?php echo $data['dealhis'][$key]['End_Date'];?></td>
+		            <td class="center"><?php echo $data['dealhis'][$key]['Description'];?></td>
+		            <td style="text-align:right;"><span class="green">$<?php echo $data['dealhis'][$key]['Dollar_Price'];?></span></td>
+		            <td style="text-align:right;"><span class="yellow"><?php echo $data['dealhis'][$key]['Coin_Price'];?></span></td>
+		            <td><a class="btn btn-info btn-mini" href="<?php echo $this->config->site_url(); ?>/deals/viewdeal?id=<?php echo $data['dealhis'][$key]['id'];?>"><i class="icon-tag icon-white"></i> View</a></td>
 		            <td class="center">-</td>
 		            <td class="center">-</td>
 		            <td class="center">-</td>
@@ -530,7 +543,7 @@
         <?php foreach($data['sales'] as $key=>$val): ?>
           	<tr>
 	            <td class="center"><?php $x= explode(" ", $data['sales'][$key]['DateTime']); echo $x[0]; ?> </td>
-	            <td class="center"><?php echo $x[1]; ?></td>
+	            <td class="center"><?php $y= explode(".", $x[1]) ; $y = explode(":", $y[0]); echo $y[0].":".$y[1]; ?></td>
 	            <td class="center"><span class="label label-warning"><?php echo $data['sales'][$key]['Status'];?></span></td>
 	            <td><a class="btn btn-info btn-mini" href="#"><i class="icon-tag icon-white"></i> View</a></td>
 	            <td class="center"><?php echo $data['sales'][$key]['Redeem_Code'];?></td>
@@ -617,6 +630,7 @@
 </div>
 </div>
 
+<?php //var_dump($data['comments']); ?>
 <div class="row-fluid span6">
 <div class="box fluid">
 <div class="box-header well" data-original-title>
@@ -624,7 +638,7 @@
   <div class="box-icon"> <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a> <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a></div>
 </div>
 <div class="box-content">
-  <table class="table table-striped table-condensed">
+  <table class="table table-striped table-condensed bootstrap-datatable datatable">
     <thead>
       <tr>
         <th>Time</th>
@@ -635,25 +649,38 @@
     </thead>
     <tbody>
 
+    <?php foreach($data['comments'] as $key=>$value):?>
       <tr>
-        <td class="center">10m</td>
-        <td class="center">I think this is great!</td>
-        <td class="center"><span class="label label-inverse">Pizza Hut</span></td>
-        <td><a class="btn btn-mini btn-danger" href="#"><i class="icon-trash icon-white"></i> Delete</a></td>
+        <td class="center">
+        	<?php 
+				$x = explode(".", $data['comments'][$key]['QQ']); 
+				if(strpos($x[0], "days") !== false){
+					// include days in string
+					$y = explode("days", $x[0]);
+					echo $y[0] . " days"; 
+				} else {
+					echo $x[0];
+				}
+				
+			?>
+        </td>
+        <td class="center"><?php echo $data['comments'][$key]['Comment']?></td>
+        <td class="center"><span class="label label-inverse"><?php echo $data['comments'][$key]['ResName']?></span></td>
+        <td><a class="btn btn-mini btn-danger btn-delete-comment" uid="" cmtid="<?php echo $data['comments'][$key]['id']; ?>" href="#"><i class="icon-trash icon-white"></i> Delete</a></td>
       </tr>
+    <?php endforeach; ?>
       
     </tbody>
   </table>
-  <div class="pagination pagination-centered">
-    <ul>
-      <li><a href="#">Prev</a></li>
-      <li class="active"> <a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">Next</a></li>
-    </ul>
-  </div>
+  
+		<style type="text/css">
+        	#DataTables_Table_2_wrapper > div.row-fluid > div.span6 {
+				display: none;
+			}
+        </style>
+
+
+
 </div>
 </div>
 </div>

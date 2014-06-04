@@ -95,6 +95,59 @@ class Restaurants extends CI_Controller {
 
 		}
 
+		// update restaurant owner infor
+		if(isset($_POST['ownerinfor'])){
+			$rofirstname		= $this->input->post('rofirstname', TRUE);
+			$rolastname			= $this->input->post('rolastname', TRUE);
+			$roemail			= $this->input->post('roemail', TRUE);
+			$rophone			= $this->input->post('rophone', TRUE);
+			
+
+			$what2update = array(
+				'O_Firstname'	=> $rofirstname,
+				'O_Lastname'	=> $rolastname,
+				'O_Email'		=> $roemail,
+				'O_Phone'		=> $rophone,
+				//'End_Date'		=> $rdend,
+			);
+
+			$this->restaurants_model->updateRestaurant1($rid, $what2update);
+		}
+
+		// update restaurant contact infor
+		if(isset($_POST['contactinfor'])){
+			$rcfirstname		= $this->input->post('rcfirstname', TRUE);
+			$rclastname			= $this->input->post('rclastname', TRUE);
+			$rcposition			= $this->input->post('rcposition', TRUE);
+			$rcemail			= $this->input->post('rcemail', TRUE);
+			$rcaddr1			= $this->input->post('rcaddr1', TRUE);
+			$rcaddr2			= $this->input->post('rcaddr2', TRUE);
+			$rccity				= $this->input->post('rccity', TRUE);
+			$rcstate			= $this->input->post('rcstate', TRUE);
+			$rccountry			= $this->input->post('rccountry', TRUE);
+			$rczip				= $this->input->post('rczip', TRUE);
+			$rcphone			= $this->input->post('rcphone', TRUE);
+			
+
+			$what2update = array(
+				'C_Firstname'	=> $rcfirstname,
+				'C_Lastname'	=> $rclastname,
+				'C_Position'	=> $rcposition,
+				'C_Email'		=> $rcemail,
+				'C_Phone'		=> $rcphone,
+				//'C_Password'	=> $rophone,
+				'C_Addr1'		=> $rcaddr1,
+				'C_Addr2'		=> $rcaddr2,
+				'C_City'		=> $rccity,
+				'C_State'		=> $rcstate,
+				'C_Country'		=> $rccountry,
+				'C_Zip'			=> $rczip,
+				//'End_Date'		=> $rdend,
+			);
+
+			$this->restaurants_model->updateRestaurant1($rid, $what2update);
+		}
+
 		//update dealx
 		for ($i=0; $i < 100; $i++) { 
 			if(isset($_POST['rd' . $i])){
@@ -111,6 +164,20 @@ class Restaurants extends CI_Controller {
 					'Coin_Price'	=> $rdcoin,
 					'Start_Date'	=> $rdstart,
 					'End_Date'		=> $rdend,
+				);
+
+				$this->restaurants_model->updateRestaurant2($rdid, $what2update);
+			}
+
+		}
+
+		//archived dealx
+		for ($i=0; $i < 100; $i++) { 
+			if(isset($_POST['rda' . $i])){
+				$rdid		= $this->input->post('rdid' . $i, TRUE);
+				
+				$what2update = array(
+					'Status'	=> 'archived',
 				);
 
 				$this->restaurants_model->updateRestaurant2($rdid, $what2update);
@@ -155,6 +222,7 @@ class Restaurants extends CI_Controller {
 		$action 	= $this->input->get('action', TRUE);
 		$uid		= (int) $this->input->get('rid', TRUE);
 		$cmtid		= (int) $this->input->get('cmtid', TRUE);
+		$notes		= $this->input->get('notes', TRUE); //get the notes
 		if($ajax == 1){
 			switch ($action) {
 				case 'deleterestaurant':
@@ -165,6 +233,11 @@ class Restaurants extends CI_Controller {
 				case 'deletecmt':
 					echo $ajax . "/" . $action . "/" . $cmtid;
 					$this->restaurants_model->deleteComment($cmtid);
+					echo "<div id=\"status\">successful</div>";
+					break;
+				case 'savesresnote':
+					echo $ajax . "/" . $action . "/" . $notes;
+					$this->restaurants_model->updateRestaurant1($uid, array('Note' => $notes));
 					echo "<div id=\"status\">successful</div>";
 					break;
 				

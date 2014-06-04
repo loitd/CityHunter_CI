@@ -551,6 +551,7 @@ jQuery(document).ready(function(){
 
 // save random control in page
 function savestaffnote(){
+	// alert();
 	var uid = jQuery("#uniqueid").attr("placeholder");
 	var notes = jQuery("#textarea2").val();
 	// do ajax
@@ -558,6 +559,36 @@ function savestaffnote(){
 		type		: 'get',
 		url			: '../staffs/delete',
 		data		: 'ajax=1&action=savestaffnote&uid=' + uid + '&notes=' + notes,
+		beforeSend	: function(){
+			// console.log("ajax begin called");
+			// me.animate({color:'black'},300);
+		},
+		success		: function(data){
+			var response = $(data).filter('#status').text();
+			//console.log(response);
+			if(response == 'successful'){
+				return true;
+			} else {
+				return false;
+			}
+		},
+		error: function(jqXHR, ex){
+			return false;
+		}
+	});
+	// return confirm("do you love?");
+}
+
+// save random control in page
+function saveresnote(){
+	console.log("Johnny fontain");
+	var uid = jQuery("#resuid").attr("placeholder");
+	var notes = jQuery("#textarea2").val();
+	// do ajax
+	jQuery.ajax({
+		type		: 'get',
+		url			: '../restaurants/delete',
+		data		: 'ajax=1&action=savesresnote&rid=' + uid + '&notes=' + notes,
 		beforeSend	: function(){
 			// console.log("ajax begin called");
 			// me.animate({color:'black'},300);

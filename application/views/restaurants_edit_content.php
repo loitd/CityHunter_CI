@@ -155,7 +155,7 @@
 				    </tr>
 					<tr>
 					  <td><strong>Unique ID</strong></td>
-					   <td class="controls"><input class="input-mini disabled" id="disabledInput" type="text" placeholder="<?php echo $data['basic']['id']; ?>" disabled=""></td>
+					   <td class="controls"><input  id="resuid" class="input-mini disabled" id="disabledInput" type="text" placeholder="<?php echo $data['basic']['id']; ?>" disabled=""></td>
 					  <td class="center">&nbsp;</td>
 				    </tr>
 					<tr>
@@ -241,10 +241,12 @@
 				  </tbody>
 		  </table>  
           
-				  <div class="form-actions">
-					<button type="submit" name="basicinfor" class="btn btn-primary">Save Changes</button>
-					<button class="btn">Cancel</button>
-				  </div>
+			  <div class="form-actions">
+				<button type="submit" name="basicinfor" class="btn btn-primary" onclick="return saveresnote()">Save Changes</button>
+				<button class="btn">Cancel</button>
+				<!--<a class="btn btn-mini btn-danger btn-test-save" href="#" onclick="saveresnote()">Me???</a>-->
+			  </div>
+
 			  </fieldset>
 			</form>   
 			 
@@ -261,34 +263,38 @@
 						</div>
 					</div>
 					<div class="box-content">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="" method="POST">
 						  <fieldset>
 						<table class="table table-striped table-condensed">
 							  <tbody>
 								<tr>
 									<td><strong>First Name</strong></td>
-									<td class="controls"><input class="input-medium" type="text" value="-"></td>
+									<td class="controls">
+									<input class="input-medium" name="rofirstname" type="text" value="<?php echo $data['basic']['O_Firstname']; ?>"></td>
 									<td class="center">&nbsp;</td>
 								</tr>
 								<tr>
 									<td><strong>Last Name</strong></td>
-									<td class="controls"><input class="input-medium" type="text" value="-"></td>
+									<td class="controls">
+									<input name="rolastname" class="input-medium" type="text" value="<?php echo $data['basic']['O_Lastname']; ?>"></td>
 									<td class="center">&nbsp;</td>
 								</tr>
 								<tr>
 									<td><strong>Email</strong></td>
-									<td class="control-group warning"><input class="input-large warning" id="inputWarning" type="text" value="-@yahooo.com"></td>
+									<td class="control-group warning">
+									<input name="roemail" class="input-large warning" id="inputWarning" type="text" value="<?php echo $data['basic']['O_Email']; ?>"></td>
 									<td class="center">&nbsp;</td>
 								</tr>
 								<tr>
 								  <td><strong>Phone</strong></td>
-									<td class="controls"><input class="input-medium" type="text" value="-"></td>
+									<td class="controls">
+									<input name="rophone" class="input-medium" type="text" value="<?php echo $data['basic']['O_Phone']; ?>"></td>
 								  <td class="center">&nbsp;</td>
 							    </tr>                           
 							  </tbody>
 					  </table>  
                        <div class="form-actions">
-						 <button type="submit" class="btn btn-primary">Save Changes</button>
+						 <button type="submit" name="ownerinfor" class="btn btn-primary">Save Changes</button>
 								<button class="btn">Cancel</button>
 							  </div>
 						  </fieldset>
@@ -302,33 +308,38 @@
                    <div class="box-icon"> <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a> <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> </div>
                  </div>
                  <div class="box-content">
-                   <form class="form-horizontal">
+                   <form class="form-horizontal" action="" method="POST">
                      <fieldset>
                        <table class="table table-striped table-condensed">
                          <tbody>
                            <tr>
                              <td><strong>Unique ID</strong></td>
-                             <td class="controls"><input class="input-mini disabled" id="disabledInput2" type="text" placeholder="-" disabled=""></td>
+                             <td class="controls">
+                             <input class="input-mini disabled" id="disabledInput2" type="text" placeholder="<?php echo $data['basic']['C_Uid']; ?>" disabled=""></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
                              <td><strong>First Name</strong></td>
-                             <td class="controls"><input class="input-medium" type="text" value="-"></td>
+                             <td class="controls">
+                             <input name="rcfirstname" class="input-medium" type="text" value="<?php echo $data['basic']['C_Firstname']; ?>"></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
                              <td><strong>Last Name</strong></td>
-                             <td class="controls"><input class="input-medium" type="text" value="-"></td>
+                             <td class="controls">
+                             <input name="rclastname" class="input-medium" type="text" value="<?php echo $data['basic']['C_Lastname']; ?>"></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
                              <td><strong>Position</strong></td>
-                             <td class="controls"><input class="input-large" type="text" value="-"></td>
+                             <td class="controls">
+                             <input name="rcposition" class="input-large" type="text" value="<?php echo $data['basic']['C_Position']; ?>"></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
                              <td><strong>Email</strong></td>
-                             <td class="control-group warning"><input class="input-large warning" id="inputWarning8" type="text" value="-@yahooo.com"></td>
+                             <td class="control-group warning">
+                             <input name="rcemail" class="input-large warning" id="inputWarning8" type="text" value="<?php echo $data['basic']['C_Email']; ?>"></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
@@ -338,45 +349,52 @@
                            </tr>
                            <tr>
                              <td><strong>Address 1</strong></td>
-                             <td class="controls"><input class="input-xlarge" type="text" value="-"></td>
+                             <td class="controls">
+                             <input name="rcaddr1" class="input-xlarge" type="text" value="<?php echo $data['basic']['C_Addr1']; ?>"></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
                              <td><strong>Address 2</strong></td>
-                             <td class="controls"><input class="input-xlarge" type="text" value="#-"></td>
+                             <td class="controls">
+                             <input name="rcaddr2" class="input-xlarge" type="text" value="<?php echo $data['basic']['C_Addr2']; ?>"></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
                              <td><strong>City</strong></td>
-                             <td class="controls"><input class="input-large" type="text" value="-"></td>
+                             <td class="controls">
+                             <input name="rccity" class="input-large" type="text" value="<?php echo $data['basic']['C_City']; ?>"></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
                              <td><strong>State/Province</strong></td>
-                             <td class="controls"><input class="input-large" type="text" class="span6 typeahead" id="typeahead" value="-" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming","Quebec","Ontario","Alberta","Manitoba","Saskatchewan","Yukon","Nunavut","British Columbia","Nova Scotia","Wyoming","New Brunswick","New Foundland and Labrador","Prince Edward island","Northwest Territories"]'>
+                             <td class="controls">
+                             <input name="rcstate" class="input-large" type="text" class="span6 typeahead" id="typeahead" value="<?php echo $data['basic']['C_State']; ?>" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming","Quebec","Ontario","Alberta","Manitoba","Saskatchewan","Yukon","Nunavut","British Columbia","Nova Scotia","Wyoming","New Brunswick","New Foundland and Labrador","Prince Edward island","Northwest Territories"]'>
                                </input></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
                              <td><strong>Country</strong></td>
-                             <td class="controls"><input class="input-small" type="text" class="span6 typeahead" id="typeahead" value="-" data-provide="typeahead" data-items="4" data-source='["United States","Canada"]'>
+                             <td class="controls">
+                             <input name="rccountry" class="input-small" type="text" class="span6 typeahead" id="typeahead" value="<?php echo $data['basic']['C_Country']; ?>" data-provide="typeahead" data-items="4" data-source='["United States","Canada"]'>
                                </input></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                            <tr>
                              <td><strong>Zip/Postal Code</strong></td>
-                             <td class="controls"><input class="input-mini" type="text" value="-"></td>
-                             <td class="center"><a class="btn btn-mini" href="https://maps.google.ca/maps?q=h3k+1g6" target="_blank"><i class="icon-globe icon-black"></i> Maps</a></td>
+                             <td class="controls">
+                             <input name="rczip" class="input-mini" type="text" value="<?php echo $data['basic']['C_Zip']; ?>"></td>
+                             <td class="center"><a class="btn btn-mini" href="https://maps.google.ca/maps?q=<?php echo $data['basic']['C_Zip']; ?>" target="_blank"><i class="icon-globe icon-black"></i> Maps</a></td>
                            </tr>
                            <tr>
                              <td><strong>Phone</strong></td>
-                             <td class="controls"><input class="input-medium" type="text" value="-"></td>
+                             <td class="controls">
+                             <input name="rcphone" class="input-medium" type="text" value="<?php echo $data['basic']['C_Phone']; ?>"></td>
                              <td class="center">&nbsp;</td>
                            </tr>
                          </tbody>
                        </table>
                        <div class="form-actions">
-                         <button type="submit" class="btn btn-primary">Save Changes</button>
+                         <button name="contactinfor" type="submit" class="btn btn-primary" >Save Changes</button>
                          <button class="btn">Cancel</button>
                        </div>
                      </fieldset>
@@ -404,7 +422,8 @@
 			            </tr>
 				        <tr>
 				          <td><strong>Total Sales</strong></td>
-				          <td class="center"><span class="green" style="font-size:15px; font-weight:bold;">$-</span></td>
+				          <td class="center"><span class="green" style="font-size:15px; font-weight:bold;">
+				          <?php echo "$" . $data['totalsales'][0]['QQ']; ?></span></td>
 				          <td class="center">&nbsp;</td>
 			            </tr>
 				        <tr>
@@ -434,7 +453,7 @@
 				    <div class="box-icon"> <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a> <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a> </div>
 			      </div>
 				  <div class="box-content">
-				    <table class="table table-striped table-condensed">
+				    <table class="table table-striped table-condensed bootstrap-datatable datatable">
                     <thead>
 							  <tr>
 							    <th>Time</th>
@@ -443,25 +462,34 @@
 					  </thead>   
 				      <tbody>
 				        
+				        <?php foreach($data['newsfeed'] as $key=>$value):?>
 				        <tr>
-				          <td class="center">10m</td>
-				          <td><span class="label label-default">-</span> likes this reastaurant</td>
+				          <td class="center">
+				          	<?php 
+								$x = explode(".", $data['newsfeed'][$key]['QQ']); 
+								if(strpos($x[0], "days") !== false){
+									// include days in string
+									$y = explode("days", $x[0]);
+									echo $y[0] . " days"; 
+								} else {
+									echo $x[0];
+								}
+								
+							?>
+				          </td>
+				          <td><span class="label label-default"><?php echo $data['newsfeed'][$key]['First_name'];?></span> <?php echo $data['newsfeed'][$key]['User_action'];?></td>
 			            </tr>
+			            <?php endforeach; ?>
 				        
 			          </tbody>
 			        </table>
-                    <div class="pagination pagination-centered">
-						  <ul>
-							<li><a href="#">Prev</a></li>
-							<li class="active">
-							  <a href="#">1</a>
-							</li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">Next</a></li>
-					  </ul>
-					</div>
+                    
+			        <style type="text/css">
+			        	#DataTables_Table_2_wrapper > div.row-fluid > div.span6 {
+							display: none;
+						}
+			        </style>
+
 			      </div>
 			  </div>
 				<div class="box fluid">
@@ -476,13 +504,12 @@
 			        </ul>
 				    <div id="myTabContent" class="tab-content">
 				      <div class="tab-pane active" id="notes">
-				        <textarea class="cleditor" id="textarea2" rows="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. Nulla tellus elit, varius non commodo eget, mattis vel eros. In sed ornare nulla.</textarea>
+				        <textarea class="cleditor" id="textarea2" rows="3">
+				        <?php echo $data['basic']['Note'];?>
+				        </textarea>
 			          </div>
 				      <div class="tab-pane" id="info">
-				        <h3>Lorem Ipsum <small>Dolor Sit amet</small></h3>
-				        <br>
-				        <p>In sed ornare nulla. Donec consectetur, velit a pharetra ultricies, diam lorem lacinia risus, ac commodo orci erat eu massa. Sed sit amet nulla ipsum. Donec felis mauris, vulputate sed tempor at, aliquam a ligula. Pellentesque non pulvinar nisi.</p>
-				        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at. Nulla tellus elit, varius non commodo eget, mattis vel eros.</p>
+				        <p><?php echo $data['basic']['Info'];?></p>
 			          </div>
 			        </div>
 			      </div>
@@ -578,7 +605,7 @@
           </table>
           	<div class="form-actions">
 				<button type="submit" name="rd<?php echo $key;?>" class="btn btn-primary">Save Changes</button>
-				<button class="btn btn-danger">Archive</button>
+				<button class="btn btn-danger" name="rda<?php echo $key;?>">Archive</button>
                 <button class="btn">Cancel</button>
 		    </div>
 		</fieldset>
@@ -612,14 +639,14 @@
               </tr>
             </thead>
             <tbody>
-              <?php foreach($data['deals'] as $key=>$val): ?>
+              <?php foreach($data['dealhis'] as $key=>$val): ?>
 	          	<tr>
-		            <td class="center"><?php echo $data['deals'][$key]['Start_Date'];?></td>
-		            <td class="center"><?php echo $data['deals'][$key]['End_Date'];?></td>
-		            <td class="center"><?php echo $data['deals'][$key]['Description'];?></td>
-		            <td style="text-align:right;"><span class="green">$<?php echo $data['deals'][$key]['Dollar_Price'];?></span></td>
-		            <td style="text-align:right;"><span class="yellow"><?php echo $data['deals'][$key]['Coin_Price'];?></span></td>
-		            <td><a class="btn btn-info btn-mini" href="<?php echo $this->config->site_url(); ?>/deals/viewdeal?id=<?php echo $data['deals'][$key]['id'];?>"><i class="icon-tag icon-white"></i> View</a></td>
+		            <td class="center"><?php echo $data['dealhis'][$key]['Start_Date'];?></td>
+		            <td class="center"><?php echo $data['dealhis'][$key]['End_Date'];?></td>
+		            <td class="center"><?php echo $data['dealhis'][$key]['Description'];?></td>
+		            <td style="text-align:right;"><span class="green">$<?php echo $data['dealhis'][$key]['Dollar_Price'];?></span></td>
+		            <td style="text-align:right;"><span class="yellow"><?php echo $data['dealhis'][$key]['Coin_Price'];?></span></td>
+		            <td><a class="btn btn-info btn-mini" href="<?php echo $this->config->site_url(); ?>/deals/viewdeal?id=<?php echo $data['dealhis'][$key]['id'];?>"><i class="icon-tag icon-white"></i> View</a></td>
 		            <td class="center">-</td>
 		            <td class="center">-</td>
 		            <td class="center">-</td>
@@ -760,7 +787,7 @@
       <div class="box-icon"> <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a> <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a></div>
     </div>
     <div class="box-content">
-      <table class="table table-striped table-condensed">
+      <table class="table table-striped table-condensed bootstrap-datatable datatable">
         <thead>
           <tr>
             <th>Time</th>
@@ -771,25 +798,36 @@
         </thead>
         <tbody>
           
+          <?php foreach($data['comments'] as $key=>$value):?>
           <tr>
-            <td class="center">10m</td>
-            <td class="center">I think this is great!</td>
-            <td class="center"><span class="label label-inverse">Pizza Hut</span></td>
+            <td class="center">
+            	<?php 
+					$x = explode(".", $data['comments'][$key]['QQ']); 
+					if(strpos($x[0], "days") !== false){
+						// include days in string
+						$y = explode("days", $x[0]);
+						echo $y[0] . " days"; 
+					} else {
+						echo $x[0];
+					}
+					
+				?>
+            </td>
+            <td class="center"><?php echo $data['comments'][$key]['Comment']?></td>
+            <td class="center"><span class="label label-inverse"><?php echo $data['comments'][$key]['ResName']?></span></td>
             <td><a class="btn btn-mini btn-danger" href="#"><i class="icon-trash icon-white"></i> Delete</a></td>
           </tr>
-          
+          <?php endforeach; ?>
+
         </tbody>
       </table>
-      <div class="pagination pagination-centered">
-        <ul>
-          <li><a href="#">Prev</a></li>
-          <li class="active"> <a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">Next</a></li>
-        </ul>
-      </div>
+      
+      <style type="text/css">
+    	#DataTables_Table_2_wrapper > div.row-fluid > div.span6 {
+			display: none;
+		}
+    </style>
+
     </div>
   </div>
 </div>
