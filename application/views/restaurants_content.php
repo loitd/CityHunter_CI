@@ -46,7 +46,16 @@
 			  	<?php foreach($data as $key => $value): ?>
 					<tr forr="<?php echo $data[$key]['id']; ?>">
 					  	<td><?php echo $data[$key]['id']; ?></td>
-					  	<td><?php echo $data[$key]['Name']; ?></td>
+					  	<td>
+					  		<?php 
+					  			if(strlen($data[$key]['Name']) > 15) {
+					  				echo substr( $data[$key]['Name'] , 0, 15) . "...";
+					  			} else {
+					  				echo $data[$key]['Name']; 	
+					  			}
+					  			
+					  		?>
+					  	</td>
 						<td><?php echo $data[$key]['Cousine_Type']; ?></td>
 						<td><?php echo $data[$key]['Email']; ?></td>
 						<td style="text-align:right;"><?php echo $data[$key]['Check_ins']; ?></td>

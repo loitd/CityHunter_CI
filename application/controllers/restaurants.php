@@ -46,6 +46,9 @@ class Restaurants extends CI_Controller {
 			$rid = null;
 		}
 
+		//check if there is 5 dishes or we will create news records\
+		$this->restaurants_model->countNInsertDishes($rid);
+
 		//update the basic information in tab 1
 		if (isset($_POST['basicinfor'])) {
 			$rname 		= $this->input->post('rname', TRUE);
@@ -175,7 +178,7 @@ class Restaurants extends CI_Controller {
 		for ($i=0; $i < 100; $i++) { 
 			if(isset($_POST['rda' . $i])){
 				$rdid		= $this->input->post('rdid' . $i, TRUE);
-				
+
 				$what2update = array(
 					'Status'	=> 'archived',
 				);
@@ -197,10 +200,10 @@ class Restaurants extends CI_Controller {
 				$what2update = array(
 					'Menu_name'			=> $rsname,
 					'Menu_description'	=> $rsdesc,
-					'Menu_prize'		=> $rsprice,
+					'Menu_prize'		=> (int)$rsprice,
 				);
 
-				$this->restaurants_model->updateRestaurant3($rsid, $what2update);
+				$this->restaurants_model->updateRestaurant3((int)$rsid, $what2update);
 			}
 
 		}		

@@ -674,7 +674,10 @@
   </table>
   
 		<style type="text/css">
-        	#DataTables_Table_2_wrapper > div.row-fluid > div.span6 {
+        	#DataTables_Table_0_wrapper > div.row-fluid > div.span6,
+        	#DataTables_Table_1_wrapper > div.row-fluid > div.span6,
+        	#DataTables_Table_2_wrapper > div.row-fluid > div.span6,
+        	#DataTables_Table_3_wrapper > div.row-fluid > div.span6 {
 				display: none;
 			}
         </style>
@@ -691,10 +694,9 @@
 <hr>
         
 <?php foreach($data['signatures'] as $key=>$val): ?>
+<?php if($data['signatures'][$key]['Menu_name'] != ''): ?>
 
 <div class="row-fluid sortable">
-
-    
     <div class="box fluid span6">
 		<div class="box-header well" data-original-title>
 			<h2>Signature Dish <?php echo $key+1;?></h2>
@@ -735,11 +737,9 @@
 		  	</table>  
 		</div>
     </div>
-    
-    
-
 </div>
 
+<?php endif;?>
 <?php endforeach; ?>
             
 <!-- content ends -->

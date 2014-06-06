@@ -73,15 +73,29 @@ class restaurants_model extends CI_Model
             $ownerphotos = '';
             $memberphotos = '';
             
+            
             $comments = 'select aa.*, bb."Name" as "ResName" from 
                         (select a."id", a."Comment", now() - a."DateTime" as "QQ", b."Restaurant_Id" 
                         from srv_comment a left join srv_user_activity b
-                        on a."Activity_id"::Integer = b."id") aa
+                        on b."id" = COALESCE(a."Activity_id", \'xxx\')::int) aa
                         left join srv_restaurant_information bb
-                        on aa."Restaurant_Id"::Integer = bb."id"
-                        where aa."Restaurant_Id"::Integer = '. $id .'';
+                        on aa."Restaurant_Id"::int = bb."id"
+                        where aa."Restaurant_Id"::int = '. $id;
+            
+
+            /*
+            $comments = 'select aa.*, bb."Name" as "ResName" from 
+                        (select a."id", a."Comment", now() - a."DateTime" as "QQ", b."Restaurant_Id" 
+                        from srv_comment a left join srv_user_activity b
+                        on b."id" = to_number(a."Activity_id", \'999999999999\')) aa
+                        left join srv_restaurant_information bb
+                        on aa."Restaurant_Id"::int = bb."id"
+                        where aa."Restaurant_Id"::int = ' . $id;
+            */
+                                
             $comments = $this->db->query($comments);
             $comments = $comments->result_array();
+            //var_dump($comments);
             
             $signatures = 'select * from srv_restaurant_menus where "Restaurant_Id"::Integer = ' . $id;
             $signatures = $this->db->query($signatures);
@@ -153,5 +167,29 @@ class restaurants_model extends CI_Model
         $this->db->update('srv_restaurant_menus', $what2update); 
     }
 
+    public function countNInsertDishes($id=null){
+        if(!is_null($id)){
+            $this->db->trans_start(); //begin the transaction
+
+            $numofDish = 'select count(*) as "QQ" from srv_restaurant_menus 
+                            where "Restaurant_Id"::Integer = '. $id .'';
+
+            $numofDish = $this->db->query($numofDish);
+            $numofDish = $numofDish->result_array();
+            $numofDish = (int)$numofDish[0]['QQ'];
+
+            //var_dump($numofDish);
+            if($numofDish < 5){
+                for ($i=1; $i <= 5-$numofDish ; $i++) { 
+                    //insert new blank into DB :))
+                    $this->db->insert('srv_restaurant_menus', array("Restaurant_Id"=>$id)); 
+                    
+                }
+            }
+
+            $this->db->trans_complete(); //end transaction
+        }
+
+    }
 /////////////////////////////////////////////////
 }

@@ -47,3 +47,5 @@ define('MAIL_SMTP_PASSWORD', 'Hai2013!');
 define('MAIL_RESETPWD_CONTENT', 'Dear member!<br> 
 Your new reset password is: ');
 
+//
+define('DISH_NUMBER_TO_EDIT', 5);

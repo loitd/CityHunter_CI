@@ -823,7 +823,10 @@
       </table>
       
       <style type="text/css">
-    	#DataTables_Table_2_wrapper > div.row-fluid > div.span6 {
+    	#DataTables_Table_0_wrapper > div.row-fluid > div.span6,
+    	#DataTables_Table_1_wrapper > div.row-fluid > div.span6,
+    	#DataTables_Table_2_wrapper > div.row-fluid > div.span6,
+    	#DataTables_Table_3_wrapper > div.row-fluid > div.span6 {
 			display: none;
 		}
     </style>
@@ -844,7 +847,7 @@
     <div class="row-fluid sortable">
         <div class="box fluid span6">
 			<div class="box-header well" data-original-title>
-				<h2>Signature Dish 1</h2>
+				<h2>Signature Dish <?php echo $key+1; ?></h2>
 				  <div class="box-icon">
 					<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
 					<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -898,8 +901,8 @@
         </div>
         </div>
 <?php endforeach; ?>
-        
-    
+
+
 
             
 
